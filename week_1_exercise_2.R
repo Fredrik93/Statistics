@@ -21,6 +21,7 @@ prior<- exp( -5*abs(p_grid -0.5))
 #Compute the likelihood at each parameter value
 likelihood <- dbinom(6, size=9, prob=p_grid)
 
+
 #Step 4:
 #Compute the unstandardized posterior at each parameter value, by multiplying the prior to the likelihood
 unstandardized.posterior <- likelihood * prior 
