@@ -3,6 +3,7 @@ data("Howell1")
 d <- Howell1
 
 d2 <- d[d$age >= 18,]
+
 xbar <- mean(d2$weight)
 m<- quap(
   alist(
