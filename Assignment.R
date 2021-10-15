@@ -18,7 +18,7 @@ library(rethinking)
 # assumptions (priors): Normal(0,10) ? dont really know much about the subjects. Theyre human? 
 # 
 
-d <- read.csv(file="data_autumn2020.csv", sep=";")
+d <- read.csv(file="data_autumn2020.csv", sep=";", stringsAsFactors=FALSE)
 
 
 NewTechLessExperienced <- d$tp[d$technique == "NT" & d$category == "ME"]
@@ -27,15 +27,13 @@ NewTechMoreExperienced <- d$tp[d$technique == "NT" & d$category == "LE"]
 OldTechMoreExperienced<- d$tp[d$technique == "OT" & d$category == "ME"]
 OldTechLessExperienced<- d$tp[d$technique == "OT" & d$category == "LE"]
 
-NewTechLessExperienced
+df <- d$technique[-36]
+NTALL <- d$tp[d$technique=="NT"]
+NTALL
+mean(NTALL)
+sd(NTALL)
+OTALL <- d$tp[d$technique == "OT"]
+mean(OTALL)
+sd(OTALL)
 
-meanNT <- mean(NewTechLessExperienced)
-sdNT <- sd(NewTechLessExperienced)
-meanNTME <- mean(NewTechMoreExperienced)
-sdNTME <- sd(NewTechMoreExperienced)
-ntLE <- dnorm(NewTechLessExperienced, meanNT, sdNT )
-ntME <- dnorm(NewTechLessExperienced, meanNTME, sdNTME )
-
-precis(ntLE)
-plot(ntLE, type='l', col="red")
-lines(ntME, type='l', col="blue")
+d[72,3] <- "OT"
